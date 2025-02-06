@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Button, Tooltip, Card } from "antd";
 
 function Home() {
   const [state, setState] = useState([]);
@@ -19,26 +20,30 @@ function Home() {
           {state.map((item) => (
             <li
               key={item.id}
-              className=" p-2 flex flex-col justify-centers w-[300px] h-[400px] gap-2 bg-white rounded-2xl"
+              className=" p-2 flex flex-col justify-centers w-[300px] h-[400px] gap-2"
             >
-              <div className="flex justify-center items-center">
-                <img
-                  src={item.image}
-                  alt="image"
-                  className="w-[200px] h-[200px]"
-                />
-              </div>
-              <h3 className="h-[80px]">{item.title}</h3>
-              <h2 className="text-xl h-[40px]">Price:Rs{item.price}</h2>
-              <div className="flex gap-3">
-                <h3>count:{item.rating.count}</h3>
-                <h3>rate:{item.rating.rate}</h3>
-              </div>
-              <NavLink to={"/" + item.id}>
-                <button className="rounded-2xl p-2 bg-amber-100 cursor-pointer">
-                  Readmore....
-                </button>
-              </NavLink>
+              <Card>
+                <div className="flex justify-center items-center">
+                  <img
+                    src={item.image}
+                    alt="image"
+                    className="w-[200px] h-[200px]"
+                  />
+                </div>
+                <h3 className="h-[80px]">{item.title}</h3>
+                <h2 className="text-xl h-[40px]">Price:Rs{item.price}</h2>
+                <div className="flex gap-3">
+                  <h3>count:{item.rating.count}</h3>
+                  <h3>rate:{item.rating.rate}</h3>
+                </div>
+                <NavLink to={"/" + item.id}>
+                  <Tooltip title="go to the inner page">
+                    <Button type="primary" size="small" style={{}}>
+                      Readmore....
+                    </Button>
+                  </Tooltip>
+                </NavLink>
+              </Card>
             </li>
           ))}
         </ul>
